@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlueVault EMI Calculator</title>
+  <link rel="stylesheet" href="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/pages/emi/style.css"/>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="https://www.bluevault.live">
+        <img src="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/Logo/fulllogo_transparent.png" class="logo"/>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="https://www.bluevault.live">Home</a></li>
+          <li><a href="https://www.bluevault.live/emi-calc">EMI Calculator</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="emi-container">
+    <h1>Home Loan EMI Calculator</h1>
+
+    <div class="input-group">
+      <label>Loan Amount: <span id="amountDisplay">500000</span></label>
+      <input type="range" id="loanAmount" min="100000" max="10000000" step="50000" value="500000">
+    </div>
+
+    <div class="input-group">
+      <label>Interest Rate (% p.a.): <span id="interestDisplay">7.5</span></label>
+      <input type="range" id="interestRate" min="1" max="15" step="0.1" value="7.5">
+    </div>
+
+    <div class="input-group">
+      <label>Tenure (Years): <span id="tenureDisplay">20</span></label>
+      <input type="range" id="loanTenure" min="1" max="30" step="1" value="20">
+    </div>
+
+    <button id="calculateBtn">Calculate EMI</button>
+
+    <div class="result">
+      <h2>Results</h2>
+      <p><strong>Monthly EMI:</strong> ₹<span id="emiResult">0</span></p>
+      <p><strong>Total Amount Paid:</strong> ₹<span id="totalPaid">0</span></p>
+      <canvas id="loanChart" width="400" height="200"></canvas>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BlueVault Finance. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/pages/emi/script.js"></script>
+</body>
+</html>

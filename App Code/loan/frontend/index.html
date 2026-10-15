@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueVault Loan Application</title>
+  <!-- ✅ Load CSS from S3 -->
+  <link rel="stylesheet" href="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/pages/loan/style.css" />
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="https://www.bluevault.live">
+        <img src="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/Logo/fulllogo_transparent.png"
+             alt="BlueVault Logo" class="logo" />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="https://www.bluevault.live">Home</a></li>
+          <li class="dropdown">
+            <a href="#">Services</a>
+            <ul class="dropdown-menu align-left">
+              <li><a href="https://www.bluevault.live/sip-calc">Mutual Fund Calculator</a></li>
+              <li><a href="https://www.bluevault.live/emi-calc">Home Loan Calculator</a></li>
+              <li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Loans</a></li>
+          <li><a href="#">Investments</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ✅ Loan Form Container -->
+  <div class="loan-form-container">
+    <h1>Loan Application</h1>
+    <form id="loan-form">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required />
+
+      <label for="contact">Contact Number</label>
+      <input type="tel" id="contact" required />
+
+      <label for="uid">UID Number</label>
+      <input type="text" id="uid" required />
+
+      <label for="loanType">Type of Loan</label>
+      <select id="loanType" required>
+        <option value="">--Select--</option>
+        <option value="Gold Loan">Gold Loan</option>
+        <option value="Home Loan">Home Loan</option>
+        <option value="Vehicle Loan">Vehicle Loan</option>
+        <option value="Personal Loan">Personal Loan</option>
+      </select>
+
+      <label for="employment">Employment Type</label>
+      <select id="employment" required>
+        <option value="">--Select--</option>
+        <option value="Salaried">Salaried</option>
+        <option value="Business">Business</option>
+      </select>
+
+      <button type="submit" id="submit-btn">Submit</button>
+      <button type="button" id="reset-btn">Reset</button>
+
+      <!-- ✅ Status message placeholder -->
+      <div id="status-message" class="status-message"></div>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 BlueVault Finance. All rights reserved.</p>
+  </footer>
+
+  <!-- ✅ Load script from S3 -->
+  <script src="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/pages/loan/script.js"></script>
+</body>
+</html>

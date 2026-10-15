@@ -1,0 +1,162 @@
+/* ===== Loan Form Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f3f8;
+  color: #333;
+  padding: 2rem;
+}
+
+/* Header/Navbar reused from main site for consistency */
+header {
+  background-color: #e9dff0;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar img.logo {
+  height: 60px;
+  cursor: pointer;
+}
+
+.navbar nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.navbar nav a {
+  text-decoration: none;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+.navbar nav a:hover {
+  color: #7c3aed;
+}
+
+/* ===== Loan Form Container ===== */
+.loan-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(75, 0, 130, 0.1);
+}
+
+.loan-form-container h1 {
+  text-align: center;
+  color: #4b0082;
+  margin-bottom: 1.5rem;
+}
+
+.loan-form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #4b0082;
+}
+
+.loan-form-container input,
+.loan-form-container select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.loan-form-container button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#submit-btn {
+  background-color: #7c3aed;
+  color: #fff;
+  margin-right: 1rem;
+}
+
+#submit-btn:hover {
+  background-color: #6b21a8;
+}
+
+#reset-btn {
+  background-color: #ccc;
+  color: #000;
+}
+
+#reset-btn:hover {
+  background-color: #aaa;
+}
+
+.status-message {
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .loan-form-container {
+    padding: 1rem;
+  }
+}
+
+/* ===== Dropdown Menu Fix ===== */
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown-menu {
+  display: none; /* ✅ hide dropdown by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px;
+  padding: 0.5rem 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.navbar .dropdown-menu li {
+  display: block;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.navbar .dropdown-menu li a {
+  color: #4b0082;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.navbar .dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* ✅ Show dropdown when hovering on parent */
+.navbar .dropdown:hover .dropdown-menu {
+  display: block;
+}

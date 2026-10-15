@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - sip-backend
+
+  sip-backend:
+    build: ./backend
+    expose:
+      - "5000"

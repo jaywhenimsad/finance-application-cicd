@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    container_name: static-web
+    restart: always
