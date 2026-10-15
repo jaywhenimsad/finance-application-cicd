@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: alamshkh1/bluevault-loan-form-db:v5 # Remember to build and push this image
+          image: jaycontainers328/finance-app-cicd:loan-mysql-db # Remember to build and push this image
           env: # <--- STATICALLY TYPED ENVIRONMENT VARIABLES
             - name: MYSQL_ROOT_PASSWORD
               value: admin123 # <--- STATICALLY TYPED PASSWORD

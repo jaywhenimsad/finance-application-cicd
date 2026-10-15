@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: alamshkh1/bluevault-loan-form-fe:v6 # Replace with your Docker Hub username
+          image: jaycontainers328/finance-app-cicd:loan-frontend # Replace with your Docker Hub username
           ports:
             - containerPort: 80
           # Removed volumeMounts and volumes sections related to ConfigMap

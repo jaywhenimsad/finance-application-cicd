@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: emi-backend
-        image: alamshkh1/bluevault-emi-be:v4 # Build from home-loan-calculator/backend/Dockerfile
+        image: jaycontainers328/finance-app-cicd:emi-calc-backend # Build from home-loan-calculator/backend/Dockerfile
         ports:
         - containerPort: 5000
         resources:

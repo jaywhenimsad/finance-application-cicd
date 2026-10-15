@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sip-frontend
-        image: alamshkh1/bluevault-sip-fe:v5 # Replace with your Docker Hub username and tag
+        image: jaycontainers328/finance-app-cicd:sip-frontend # Replace with your Docker Hub username and tag
         ports:
         - containerPort: 80 # Nginx listens on port 80
 

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: home-frontend
-          image: alamshkh1/bluevault-home:v3 # Your Docker Hub image
+          image: jaycontainers328/finance-app-cicd:home-web # Your Docker Hub image
           ports:
             - containerPort: 80 # Nginx listens on port 80
           resources:

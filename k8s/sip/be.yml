@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sip-backend
-        image: alamshkh1/bluevault-sip-be:v4 # Replace with your Docker Hub username and tag
+        image:  jaycontainers328/finance-app-cicd:sip-sip-backend # Replace with your Docker Hub username and tag
         ports:
         - containerPort: 5000
         resources:

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: loan-backend
-          image: alamshkh1/bluevault-loan-form-be:v5 # Replace with your Docker Hub username
+          image: jaycontainers328/finance-app-cicd:loan-backend # Replace with your Docker Hub username
           ports:
             - containerPort: 5000
           env: # <--- STATICALLY TYPED ENVIRONMENT VARIABLES
