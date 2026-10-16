@@ -3,68 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BlueVault Finance</title>
+  <meta name="theme-color" content="#062b3a" />
+  <meta name="description" content="financeBI — smarter tools for confident financial decisions." />
+  <title>financeBI | Smarter Money Decisions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/pages/home/style.css" />
 </head>
 <body>
-<header>
-  <div class="navbar">
-<a href="https://www.bluevault.live">
-  <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Logo/fulllogo_transparent.png" alt="BlueVault Logo" class="logo" />
-</a>
-    <nav>
+<header class="site-header">
+  <div class="navbar shell">
+    <a class="brand" href="https://www.bluevault.live" aria-label="financeBI home">
+      <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Logo/financebi-logo.svg" alt="financeBI logo" class="logo" />
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    <nav id="primary-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="https://www.bluevault.live">Home</a></li>
-<li class="dropdown">
-  <a href="#">Services</a>
-  <ul class="dropdown-menu align-left">
-    <li><a href="https://www.bluevault.live/sip-calc">Mutual Fund Calculator</a></li>
-    <li><a href="https://www.bluevault.live/emi-calc">Home Loan Calculator</a></li>
-    <li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li>
-  </ul>
-</li>
-        <li><a href="#">Loans</a></li>
-        <li><a href="#">Investments</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a class="nav-link active" href="https://www.bluevault.live">Home</a></li>
+        <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">Services <span class="chevron">⌄</span></a>
+          <ul class="dropdown-menu align-left">
+            <li><a href="https://www.bluevault.live/sip-calc">Mutual Fund Calculator</a></li>
+            <li><a href="https://www.bluevault.live/emi-calc">Home Loan Calculator</a></li>
+            <li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="#">Loans</a></li>
+        <li><a class="nav-link" href="#">Investments</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </div>
-
-  <div class="banner-slider">
-      <div class="banner-track">
-    <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Hero/1.jpeg" class="banner-image active" />
-    <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Hero/2.jpeg" class="banner-image" />
-    <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Hero/3.jpeg" class="banner-image" />
-    </div>
-  </div>
-
-  <div class="hero-text">
-    <h1>Welcome to BlueVault Finance</h1>
-    <p>Where Your Money Feels Safe.</p>
+    <a class="button button-primary nav-cta" href="https://www.bluevault.live/sip-calc">Get Started <span aria-hidden="true">↗</span></a>
   </div>
 </header>
+<main>
+  <section class="hero">
+    <div class="hero-art" role="img" aria-label="Finance dashboard illustration with charts and growing investments"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-content shell">
+      <p class="eyebrow eyebrow-light"><span></span> WELCOME TO FINANCEBI</p>
+      <h1>Plan Today.<br />Build <span>Tomorrow.</span></h1>
+      <p class="hero-copy">Your all-in-one financial planning companion. Explore intuitive tools and make smarter decisions for a more secure future.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://www.bluevault.live/sip-calc">Start Planning <span aria-hidden="true">→</span></a>
+        <a class="button button-outline" href="https://www.bluevault.live/emi-calc">Explore Tools</a>
+      </div>
+      <div class="hero-trust">
+        <span><i class="trust-icon">✓</i> Smart calculators</span><b></b>
+        <span><i class="trust-icon">↗</i> Clear insights</span><b></b>
+        <span><i class="trust-icon">◆</i> Secure &amp; reliable</span>
+      </div>
+    </div>
+    <div class="hero-bottom-wave" aria-hidden="true"></div>
+  </section>
 
-<section class="features">
-  <div class="feature-box">
-    <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/secure_banking.jpeg" alt="Secure Banking" class="feature-image" />
-    <h2>Secure Banking</h2>
-    <p>Experience safe and reliable financial services built on trust.</p>
-  </div>
-  <div class="feature-box">
-    <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/flexible_loan.jpeg" alt="Flexible Loans" class="feature-image" />
-    <h2>Flexible Loans</h2>
-    <p>Tailored loan options that suit your personal or business needs.</p>
-  </div>
-  <div class="feature-box">
-    <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/smart_investment.jpeg" alt="Smart Investments" class="feature-image" />
-    <h2>Smart Investments</h2>
-    <p>Grow your wealth with expert-backed investment solutions.</p>
-  </div>
-</section>
+  <section class="tools-section shell" aria-labelledby="tools-title">
+    <div class="section-intro">
+      <p class="eyebrow">YOUR FINANCIAL TOOLKIT <span></span></p>
+      <h2 id="tools-title">Small steps.<br /><span>Smarter money moves.</span></h2>
+      <p>Explore easy-to-use tools designed to help you plan, compare and move forward with confidence.</p>
+      <a class="text-link" href="https://www.bluevault.live/emi-calc">Explore all tools <span aria-hidden="true">→</span></a>
+    </div>
+    <a class="tool-card tool-emi" href="https://www.bluevault.live/emi-calc">
+      <div class="tool-visual visual-emi"><img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/financebi-emi.svg" alt="" loading="lazy" /></div>
+      <div class="tool-card-body"><span class="tool-icon icon-teal">▦</span><h3>EMI Calculator</h3><p>Estimate monthly payments and find a repayment plan that fits.</p><span class="card-arrow" aria-hidden="true">↗</span></div>
+    </a>
+    <a class="tool-card tool-sip" href="https://www.bluevault.live/sip-calc">
+      <div class="tool-visual visual-sip"><img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/financebi-sip.svg" alt="" loading="lazy" /></div>
+      <div class="tool-card-body"><span class="tool-icon icon-blue">↗</span><h3>SIP Calculator</h3><p>Explore how consistent investing may grow over time.</p><span class="card-arrow" aria-hidden="true">↗</span></div>
+    </a>
+    <a class="tool-card tool-loan" href="https://www.bluevault.live/loan-form">
+      <div class="tool-visual visual-loan"><img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/financebi-loan.svg" alt="" loading="lazy" /></div>
+      <div class="tool-card-body"><span class="tool-icon icon-violet">▤</span><h3>Loan Application</h3><p>Take the next step with a simple, guided application.</p><span class="card-arrow" aria-hidden="true">↗</span></div>
+    </a>
+    <a class="tool-card tool-contact" href="contact.html">
+      <div class="tool-visual visual-contact"><img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Main/financebi-support.svg" alt="" loading="lazy" /></div>
+      <div class="tool-card-body"><span class="tool-icon icon-orange">✉</span><h3>Contact Us</h3><p>Have a question? Our team is here to help you.</p><span class="card-arrow" aria-hidden="true">↗</span></div>
+    </a>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 BlueVault Finance. All rights reserved.</p>
-  </footer>
+  <section class="impact shell" aria-label="Our impact">
+    <div class="impact-copy"><p class="eyebrow eyebrow-light">OUR IMPACT</p><h2>Make your next<br />money move count.</h2><p>Build better financial habits with accessible tools and insights made for everyday decisions.</p><div class="impact-line" aria-hidden="true"></div></div>
+    <div class="impact-stat"><span class="stat-icon">♙</span><strong data-count="250000" data-suffix="+">2,50,000+</strong><span>People planning ahead</span></div>
+    <div class="impact-stat"><span class="stat-icon">▦</span><strong data-count="100000" data-suffix="+">1,00,000+</strong><span>Calculations explored</span></div>
+    <div class="impact-stat"><span class="stat-icon">✓</span><strong>Simple</strong><span>Tools for real life</span></div>
+  </section>
+
+  <section class="why-section">
+    <div class="shell why-inner"><div class="why-heading"><p class="eyebrow">WHY FINANCEBI <span></span></p><h2>Clarity for every<br />financial milestone.</h2><p>Helpful tools and straightforward experiences to make complex money questions feel simpler.</p></div>
+      <div class="benefit"><span class="benefit-icon">⌘</span><div><h3>Easy to use</h3><p>Clear tools without the clutter.</p></div></div>
+      <div class="benefit"><span class="benefit-icon">◇</span><div><h3>Thoughtful by design</h3><p>Understand your options at a glance.</p></div></div>
+      <div class="benefit"><span class="benefit-icon">↗</span><div><h3>Plan with confidence</h3><p>Explore scenarios before deciding.</p></div></div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><a class="footer-brand" href="https://www.bluevault.live"><img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Logo/financebi-logo.svg" alt="financeBI" /></a><p>Smarter money decisions start with a plan.</p><span>© 2026 financeBI. All rights reserved.</span></div></footer>
 <script src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/pages/home/script.js"></script>
 </body>
 </html>
