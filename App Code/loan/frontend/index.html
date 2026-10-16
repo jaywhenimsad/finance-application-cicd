@@ -3,78 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BlueVault Loan Application</title>
-  <!-- ✅ Load CSS from S3 -->
-  <link rel="stylesheet" href="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/pages/loan/style.css" />
+  <meta name="theme-color" content="#062b3a" />
+  <title>Loan Application | financeBI</title>
+  <style>
+    :root{--navy:#062b3a;--navy-2:#0b4050;--teal:#00b99a;--teal-dark:#008e83;--ink:#102d46;--muted:#607b98;--line:#dce9f1;--surface:#fff;--wash:#f3f9fc;--shadow:0 18px 48px rgba(12,54,77,.10)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(145deg,#f7fbfd 0%,#eef7fa 55%,#f8fbfd 100%);min-height:100vh;display:flex;flex-direction:column}a{color:inherit}button,input,select{font:inherit}
+    .site-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(220,233,241,.9)}.navbar{max-width:1200px;min-height:78px;padding:12px 24px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}.brand-mark{width:42px;height:42px}.brand-copy{display:flex;flex-direction:column;line-height:1}.brand-name{font-size:25px;font-weight:800;letter-spacing:-1.1px;color:var(--navy)}.brand-name span{color:var(--teal-dark)}.brand-tagline{font-size:10px;color:var(--muted);letter-spacing:.25px;margin-top:5px}.nav-toggle{display:none;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--navy);padding:9px 12px;cursor:pointer}.nav-list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:8px}.nav-list>li{position:relative}.nav-list a{display:block;text-decoration:none;padding:11px 13px;border-radius:10px;font-size:14px;font-weight:600;color:#38536c;transition:background .2s,color .2s}.nav-list a:hover,.nav-list a:focus-visible{background:#e8f8f5;color:var(--teal-dark);outline:none}.dropdown-menu{display:none;position:absolute;top:100%;left:0;min-width:225px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow);list-style:none}.dropdown:hover .dropdown-menu,.dropdown:focus-within .dropdown-menu{display:block}.dropdown-menu a{white-space:nowrap}.nav-cta{background:linear-gradient(135deg,var(--teal),var(--teal-dark))!important;color:#fff!important;border-radius:999px!important;padding:12px 18px!important;box-shadow:0 8px 18px rgba(0,185,154,.18)}
+    main{width:100%;flex:1}.page-wrap{max-width:1120px;margin:0 auto;padding:38px 24px 64px}.intro{position:relative;overflow:hidden;border-radius:26px;padding:34px 38px;margin-bottom:28px;color:#fff;background:radial-gradient(circle at 88% 20%,rgba(0,205,166,.28),transparent 30%),linear-gradient(115deg,#062b3a 0%,#0b4655 60%,#087b79 100%);box-shadow:0 18px 40px rgba(6,43,58,.18)}.intro:after{content:"";position:absolute;width:290px;height:290px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-75px;top:-150px;box-shadow:0 0 0 28px rgba(255,255,255,.025),0 0 0 58px rgba(255,255,255,.025)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2.1px;font-weight:800;color:#6af0d5;margin:0 0 12px}.intro h1{font-size:clamp(30px,4vw,44px);letter-spacing:-1.4px;line-height:1.12;margin:0 0 13px;max-width:680px}.intro p{margin:0;max-width:650px;color:#d4e9ef;line-height:1.7;font-size:15px}.intro-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}.intro-badges span{font-size:12px;color:#e8fffa;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);padding:8px 12px;border-radius:999px}
+    .layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:24px;align-items:start}.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.form-panel{padding:28px}.section-heading{margin-bottom:24px}.section-heading h2{font-size:22px;letter-spacing:-.5px;margin:0 0 7px;color:var(--navy)}.section-heading p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px 16px}.field{min-width:0}.field.full{grid-column:1/-1}.field label{display:block;font-size:13px;font-weight:700;color:#29465e;margin-bottom:8px}.field input,.field select{display:block;width:100%;min-height:48px;padding:12px 13px;border:1px solid #d4e3ec;border-radius:11px;background:#fbfdfe;color:var(--ink);outline:none;transition:border .2s,box-shadow .2s}.field input:focus,.field select:focus{border-color:var(--teal-dark);box-shadow:0 0 0 4px rgba(0,185,154,.12)}.field input::placeholder{color:#9aabba}.field select{cursor:pointer}.form-note{font-size:12px;color:var(--muted);line-height:1.55;margin:18px 0 0}.actions{display:flex;gap:12px;margin-top:24px}.btn{border:0;border-radius:12px;padding:13px 21px;min-height:48px;font-weight:750;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translateY(-1px)}.btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:#fff;box-shadow:0 9px 20px rgba(0,153,133,.2);flex:1}.btn-secondary{background:#edf4f8;color:#35536a}.btn:focus-visible{outline:3px solid #80e8d5;outline-offset:3px}.status-message{margin-top:16px;padding:0;border-radius:10px;font-size:14px;line-height:1.5}.status-message:not(:empty){padding:12px 14px;background:#eaf9f4;color:#08745f;border:1px solid #c5eee2}
+    .side-column{display:grid;gap:20px}.side-card{padding:24px}.side-card h2{font-size:18px;margin:0 0 15px;color:var(--navy)}.benefit{display:flex;gap:13px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #edf2f6}.benefit:last-child{border-bottom:0;padding-bottom:0}.benefit-icon{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:13px;background:#e1f8f2;color:var(--teal-dark);font-size:19px;font-weight:800}.benefit strong{display:block;font-size:14px;margin:1px 0 5px}.benefit p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}.security-card{background:linear-gradient(145deg,#e8faf5,#f7fcfd);border-color:#ccefe7}.security-card p{font-size:13px;line-height:1.7;color:#47677b;margin:0}.security-title{display:flex;align-items:center;gap:10px}.security-title .benefit-icon{margin-bottom:12px}.site-footer{border-top:1px solid var(--line);background:rgba(255,255,255,.8);padding:20px 24px;text-align:center;color:#6c8397;font-size:12px}.site-footer p{margin:0}.site-footer strong{color:var(--navy)}
+    @media(max-width:850px){.navbar{min-height:70px;flex-wrap:wrap}.nav-toggle{display:inline-flex;align-items:center;gap:8px}.navbar nav{display:none;width:100%;order:3}.navbar nav.open{display:block}.nav-list{align-items:stretch;flex-direction:column;gap:3px;padding:8px 0 4px}.nav-list a{padding:12px}.dropdown-menu{position:static;box-shadow:none;border-radius:10px;margin:3px 0 5px 12px;min-width:0}.dropdown:hover .dropdown-menu{display:none}.dropdown:focus-within .dropdown-menu,.dropdown.open .dropdown-menu{display:block}.layout{grid-template-columns:1fr}.side-column{grid-template-columns:1fr 1fr}.intro{padding:30px}}
+    @media(max-width:560px){.navbar{padding:12px 16px}.brand-mark{width:36px;height:36px}.brand-name{font-size:22px}.page-wrap{padding:22px 14px 40px}.intro{padding:25px 21px;border-radius:20px}.intro h1{font-size:32px}.intro p{font-size:14px}.form-panel,.side-card{padding:21px 17px}.form-grid{grid-template-columns:1fr;gap:16px}.field.full{grid-column:auto}.actions{flex-direction:column}.btn{width:100%}.side-column{grid-template-columns:1fr}.section-heading h2{font-size:20px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  </style>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="navbar">
-      <a href="https://www.bluevault.live">
-        <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Logo/fulllogo_transparent.png"
-             alt="BlueVault Logo" class="logo" />
+      <a class="brand" href="https://www.bluevault.live" aria-label="financeBI home">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="financeBI logo" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="brandGradient" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#008e83"/><stop offset="1" stop-color="#25e0b5"/></linearGradient></defs><rect x="3" y="25" width="9" height="20" rx="2" fill="url(#brandGradient)"/><rect x="16" y="15" width="9" height="30" rx="2" fill="url(#brandGradient)"/><rect x="29" y="5" width="9" height="40" rx="2" fill="url(#brandGradient)"/><path d="M5 20 18 11 29 8 40 1" fill="none" stroke="#28d8b2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="brand-copy"><span class="brand-name">finance<span>BI</span></span><span class="brand-tagline">Smarter Money Decisions</span></span>
       </a>
-      <nav>
-        <ul>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">☰ <span>Menu</span></button>
+      <nav id="primary-navigation" aria-label="Main navigation">
+        <ul class="nav-list">
           <li><a href="https://www.bluevault.live">Home</a></li>
-          <li class="dropdown">
-            <a href="#">Services</a>
-            <ul class="dropdown-menu align-left">
-              <li><a href="https://www.bluevault.live/sip-calc">Mutual Fund Calculator</a></li>
-              <li><a href="https://www.bluevault.live/emi-calc">Home Loan Calculator</a></li>
-              <li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Loans</a></li>
-          <li><a href="#">Investments</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="dropdown"><a href="#" aria-haspopup="true">Services ▾</a><ul class="dropdown-menu align-left"><li><a href="https://www.bluevault.live/sip-calc">Mutual Fund Calculator</a></li><li><a href="https://www.bluevault.live/emi-calc">Home Loan Calculator</a></li><li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li></ul></li>
+          <li><a href="#">Loans</a></li><li><a href="#">Investments</a></li><li><a href="contact.html">Contact</a></li>
+          <li><a class="nav-cta" href="https://www.bluevault.live/loan-form">Apply for a Loan ↗</a></li>
         </ul>
       </nav>
     </div>
   </header>
-
-  <!-- ✅ Loan Form Container -->
-  <div class="loan-form-container">
-    <h1>Loan Application</h1>
-    <form id="loan-form">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" required />
-
-      <label for="contact">Contact Number</label>
-      <input type="tel" id="contact" required />
-
-      <label for="uid">UID Number</label>
-      <input type="text" id="uid" required />
-
-      <label for="loanType">Type of Loan</label>
-      <select id="loanType" required>
-        <option value="">--Select--</option>
-        <option value="Gold Loan">Gold Loan</option>
-        <option value="Home Loan">Home Loan</option>
-        <option value="Vehicle Loan">Vehicle Loan</option>
-        <option value="Personal Loan">Personal Loan</option>
-      </select>
-
-      <label for="employment">Employment Type</label>
-      <select id="employment" required>
-        <option value="">--Select--</option>
-        <option value="Salaried">Salaried</option>
-        <option value="Business">Business</option>
-      </select>
-
-      <button type="submit" id="submit-btn">Submit</button>
-      <button type="button" id="reset-btn">Reset</button>
-
-      <!-- ✅ Status message placeholder -->
-      <div id="status-message" class="status-message"></div>
-    </form>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 BlueVault Finance. All rights reserved.</p>
-  </footer>
-
-  <!-- ✅ Load script from S3 -->
+  <main>
+    <div class="page-wrap">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A smarter way to plan</p>
+        <h1 id="page-title">Your next chapter starts with a <span style="color:#42e3c1">smarter financial decision.</span></h1>
+        <p>Tell us a little about yourself and the loan you need. Our team can help you understand the next steps toward your goals.</p>
+        <div class="intro-badges"><span>✓ Simple application</span><span>✓ Clear next steps</span><span>✓ Helpful support</span></div>
+      </section>
+      <div class="layout">
+        <section class="panel form-panel" aria-labelledby="form-heading">
+          <div class="section-heading"><h2 id="form-heading">Loan application</h2><p>Complete the details below. Fields marked by the browser's required validation must be filled in.</p></div>
+          <form id="loan-form">
+            <div class="form-grid">
+              <div class="field full"><label for="name">Full name</label><input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required /></div>
+              <div class="field"><label for="contact">Contact number</label><input type="tel" id="contact" name="contact" placeholder="Enter phone number" autocomplete="tel" inputmode="tel" required /></div>
+              <div class="field"><label for="uid">UID number</label><input type="text" id="uid" name="uid" placeholder="Enter UID number" autocomplete="off" required /></div>
+              <div class="field"><label for="loanType">Type of loan</label><select id="loanType" name="loanType" required><option value="">Select loan type</option><option value="Gold Loan">Gold Loan</option><option value="Home Loan">Home Loan</option><option value="Vehicle Loan">Vehicle Loan</option><option value="Personal Loan">Personal Loan</option></select></div>
+              <div class="field"><label for="employment">Employment type</label><select id="employment" name="employment" required><option value="">Select employment type</option><option value="Salaried">Salaried</option><option value="Business">Business</option></select></div>
+            </div>
+            <p class="form-note">Please ensure your details are accurate before submitting. Avoid sharing sensitive information except through the intended secure application process.</p>
+            <div class="actions"><button type="submit" id="submit-btn" class="btn btn-primary">Submit application <span aria-hidden="true">→</span></button><button type="button" id="reset-btn" class="btn btn-secondary">Reset form</button></div>
+            <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+          </form>
+        </section>
+        <aside class="side-column" aria-label="Application information">
+          <section class="panel side-card"><h2>What happens next?</h2>
+            <div class="benefit"><span class="benefit-icon">1</span><div><strong>Submit your details</strong><p>Fill in the form with your contact and loan preferences.</p></div></div>
+            <div class="benefit"><span class="benefit-icon">2</span><div><strong>Application review</strong><p>Your submitted information can be reviewed by the relevant team.</p></div></div>
+            <div class="benefit"><span class="benefit-icon">3</span><div><strong>Discuss next steps</strong><p>Keep your contact details handy for follow-up.</p></div></div>
+          </section>
+          <section class="panel side-card security-card"><div class="security-title"><span class="benefit-icon">✓</span><h2>Apply with confidence</h2></div><p>Take your time to review the information before submitting. Loan approval, eligibility and terms are subject to assessment and applicable requirements.</p></section>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><p>© 2025 <strong>financeBI</strong>. All rights reserved.</p></footer>
+  <script>
+    // Mobile navigation enhancement; the existing application script remains responsible for submission logic.
+    (() => {
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('#primary-navigation');
+      if (toggle && nav) toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      const dropdownLink = document.querySelector('.dropdown > a');
+      const dropdown = document.querySelector('.dropdown');
+      if (dropdownLink && dropdown) dropdownLink.addEventListener('click', (event) => {
+        if (window.matchMedia('(max-width: 850px)').matches) {
+          event.preventDefault();
+          dropdown.classList.toggle('open');
+        }
+      });
+      const reset = document.getElementById('reset-btn');
+      const form = document.getElementById('loan-form');
+      const status = document.getElementById('status-message');
+      if (reset && form) reset.addEventListener('click', () => { form.reset(); if (status) status.textContent = ''; });
+    })();
+  </script>
   <script src="https://bluevaultfinance.s3.ap-south-1.amazonaws.com/pages/loan/script.js"></script>
 </body>
 </html>
