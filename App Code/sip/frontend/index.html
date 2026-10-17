@@ -3,54 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIP Calculator - BlueVault Finance</title>
-  <link rel="stylesheet" href="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/pages/sip/style.css" />
+  <meta name="theme-color" content="#062d3a" />
+  <title>SIP Calculator | financeBI</title>
+  <style>
+    :root{--navy:#062d3a;--navy2:#0a4050;--teal:#00b89c;--teal-dark:#008f7b;--ink:#102f49;--muted:#617b96;--line:#dceaf0;--surface:#fff;--bg:#f3f8fb;--shadow:0 18px 48px rgba(10,52,72,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}button,input{font:inherit}.site-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(220,234,240,.9)}.navbar{max-width:1240px;margin:auto;min-height:78px;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;flex-shrink:0}.brand-mark{width:42px;height:42px}.brand-name{font-size:1.45rem;font-weight:800;letter-spacing:-.055em;color:var(--navy);line-height:1}.brand-name span{color:var(--teal-dark)}.brand-tagline{font-size:.68rem;color:var(--muted);letter-spacing:.015em;margin-top:4px}.nav-toggle{display:none;border:1px solid var(--line);background:white;color:var(--navy);border-radius:12px;padding:9px 12px;cursor:pointer}.nav-links{display:flex;align-items:center;gap:8px;list-style:none;margin:0;padding:0}.nav-links a{display:block;padding:10px 13px;border-radius:10px;font-size:.91rem;font-weight:650;color:#46617a;transition:background .2s,color .2s}.nav-links a:hover,.nav-links a[aria-current="page"]{background:#e7f8f5;color:var(--teal-dark)}.nav-cta,.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:#fff;font-weight:750;padding:13px 21px;box-shadow:0 8px 18px rgba(0,184,156,.18);cursor:pointer;transition:transform .2s,box-shadow .2s}.nav-cta:hover,.primary-btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,143,123,.25)}
+    .hero{background:radial-gradient(circle at 82% 15%,rgba(0,184,156,.25),transparent 28%),linear-gradient(120deg,#052c39,#0a4a57 65%,#087968);color:white;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:460px;height:460px;border:1px solid rgba(91,234,211,.18);border-radius:50%;right:-120px;top:-260px;box-shadow:0 0 0 45px rgba(91,234,211,.035),0 0 0 90px rgba(91,234,211,.025)}.hero-inner{max-width:1180px;margin:auto;padding:56px 24px 62px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:36px;position:relative;z-index:1}.eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:#64efdb}.hero h1{font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.08;letter-spacing:-.05em;margin:14px 0 18px;max-width:650px}.hero h1 span{color:#38e1c2}.hero p{max-width:590px;color:#d2e9ed;font-size:1.04rem;margin:0 0 25px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.secondary-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:12px 20px;color:white;font-weight:700}.secondary-btn:hover{background:rgba(255,255,255,.1)}.hero-art{width:100%;max-width:490px;justify-self:end;filter:drop-shadow(0 20px 35px rgba(0,0,0,.2))}.trust-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;color:#d6eeee;font-size:.82rem}.trust-row span{display:flex;align-items:center;gap:8px}.trust-dot{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:rgba(0,218,181,.18);color:#6cf1d9;font-weight:800}
+    .page-wrap{max-width:1180px;margin:0 auto;padding:42px 24px 64px}.section-kicker{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dark);font-weight:800}.section-heading{font-size:clamp(1.65rem,3vw,2.3rem);letter-spacing:-.04em;margin:7px 0 8px;color:var(--navy)}.section-intro{color:var(--muted);margin:0;max-width:660px}.calculator-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:24px;margin-top:25px;align-items:start}.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,30px);box-shadow:var(--shadow);min-width:0}.panel-title{display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:1.2rem;color:var(--navy)}.panel-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#def8f1;color:var(--teal-dark);font-size:1.25rem}.form-group{margin-bottom:23px}.label-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.form-group label{font-size:.92rem;font-weight:750;color:#29475f}.field-value{font-weight:800;color:var(--teal-dark);font-variant-numeric:tabular-nums}.number-input{width:100%;padding:12px 14px;border:1px solid #cbdde6;border-radius:12px;background:#fbfdfe;color:var(--ink);outline:none;transition:border .2s,box-shadow .2s}.number-input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,184,156,.13)}input[type=range]{display:block;width:100%;margin:14px 0 0;accent-color:var(--teal-dark);cursor:pointer}.range-labels{display:flex;justify-content:space-between;font-size:.75rem;color:#8295a7;margin-top:5px}.primary-btn{width:100%;padding:15px 20px;font-size:.98rem}.form-note{font-size:.78rem;color:#788da0;margin:12px 0 0}.results-panel{background:linear-gradient(150deg,#fff,#f3fbfa)}.result-total{padding:20px;border-radius:17px;background:linear-gradient(130deg,#073441,#087b70);color:#fff;margin-bottom:17px}.result-total .caption{font-size:.82rem;color:#c5e8e5}.result-total strong{display:block;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.04em;margin:4px 0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.result-total small{color:#8ef2d9}.result-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat-card{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff;min-width:0}.stat-card span{display:block;font-size:.78rem;color:var(--muted);margin-bottom:6px}.stat-card strong{font-size:1.02rem;color:var(--navy);overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.chart-wrap{margin-top:20px;padding:18px;border:1px solid var(--line);border-radius:16px;background:white}.chart-wrap h3{font-size:.95rem;margin:0 0 12px}.chart-wrap canvas{width:100%;max-height:230px}.disclaimer{font-size:.76rem;color:#8293a1;margin:15px 0 0}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}.benefit{padding:22px;border:1px solid var(--line);border-radius:17px;background:#fff}.benefit-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#e1f8f2;color:var(--teal-dark);font-weight:900}.benefit h3{font-size:1rem;margin:12px 0 6px}.benefit p{font-size:.87rem;color:var(--muted);margin:0}.site-footer{background:#052c39;color:#c7dfe4}.footer-inner{max-width:1180px;margin:auto;padding:25px 24px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.footer-brand{display:flex;align-items:center;gap:9px;color:white;font-weight:800}.footer-brand svg{width:28px;height:28px}.footer-inner p{font-size:.8rem;margin:0;color:#b0cbd2}
+    @media(max-width:900px){.navbar{flex-wrap:wrap}.nav-toggle{display:inline-flex}.nav-cta{display:none}.nav-links{display:none;order:3;flex-direction:column;align-items:stretch;width:100%;padding:8px 0 12px}.nav-links.open{display:flex}.nav-links a{padding:12px}.hero-inner{grid-template-columns:1fr .75fr;gap:18px}.calculator-layout{grid-template-columns:1fr}.results-panel{order:2}.hero-art{max-width:360px}.benefits{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){.navbar{min-height:68px;padding:10px 17px}.brand-mark{width:36px;height:36px}.brand-name{font-size:1.28rem}.brand-tagline{font-size:.62rem}.hero-inner{grid-template-columns:1fr;padding:42px 20px 46px}.hero h1{font-size:2.45rem}.hero-art{justify-self:center;max-width:310px;max-height:220px}.trust-row{gap:12px}.page-wrap{padding:32px 16px 45px}.panel{padding:20px 17px;border-radius:18px}.calculator-layout{gap:16px}.result-stats{grid-template-columns:1fr 1fr}.benefits{grid-template-columns:1fr}.footer-inner{padding:22px 17px;align-items:flex-start;flex-direction:column}.label-row{align-items:flex-start;flex-direction:column;gap:5px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="navbar">
-      <a href="https://www.bluevault.live">
-        <img src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/Logo/fulllogo_transparent.png" alt="BlueVault Logo" class="logo" />
+      <a class="brand" href="https://www.bluevault.live" aria-label="financeBI home">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="financeBI logo"><defs><linearGradient id="logoGrad" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#008f7b"/><stop offset="1" stop-color="#36e2bd"/></linearGradient></defs><rect x="4" y="27" width="9" height="17" rx="2" fill="url(#logoGrad)"/><rect x="17" y="17" width="9" height="27" rx="2" fill="url(#logoGrad)"/><rect x="30" y="6" width="9" height="38" rx="2" fill="url(#logoGrad)"/><path d="M6 22 20 13 33 3 42 5" fill="none" stroke="#0b4050" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><span class="brand-name">finance<span>BI</span></span><span class="brand-tagline">Smarter Money Decisions</span></span>
       </a>
-      <nav>
-        <ul>
-          <li><a href="https://www.bluevault.live">Home</a></li>
-          <li><a href="https://www.bluevault.live/sip-calc">SIP Calculator</a></li>
-          <li><a href="https://www.bluevault.live/emi-calc">EMI Calculator</a></li>
-          <li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li>
-        </ul>
-      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">☰ <span class="sr-only">Menu</span></button>
+      <nav aria-label="Main navigation"><ul class="nav-links" id="primary-navigation">
+        <li><a href="https://www.bluevault.live">Home</a></li>
+        <li><a href="https://www.bluevault.live/sip-calc" aria-current="page">SIP Calculator</a></li>
+        <li><a href="https://www.bluevault.live/emi-calc">EMI Calculator</a></li>
+        <li><a href="https://www.bluevault.live/loan-form">Loan Application</a></li>
+      </ul></nav>
+      <a class="nav-cta" href="https://www.bluevault.live/sip-calc">Start planning <span aria-hidden="true">→</span></a>
     </div>
   </header>
-  <main class="calculator-container">
-    <h1>SIP Calculator</h1>
-    <div class="form-group">
-      <label>Monthly Investment (₹)</label>
-      <input type="number" id="investment" value="5000">
-      <input type="range" id="investment-slider" min="1000" max="100000" step="500" value="5000">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Invest with a plan</div>
+        <h1>Small steps today.<br><span>Stronger tomorrow.</span></h1>
+        <p>Explore how regular monthly investing could grow over time. Adjust your investment, expected return and timeline to understand the possibilities.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#sip-calculator">Calculate my SIP <span aria-hidden="true">→</span></a><a class="secondary-btn" href="#how-it-works">How it works</a></div>
+        <div class="trust-row"><span><i class="trust-dot">✓</i> Simple projections</span><span><i class="trust-dot">✓</i> Flexible inputs</span><span><i class="trust-dot">✓</i> Clear breakdown</span></div>
+      </div>
+      <svg class="hero-art" viewBox="0 0 480 320" role="img" aria-label="Illustration of investment growth with a rising chart and growing plant"><defs><linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123f50"/><stop offset="1" stop-color="#071f31"/></linearGradient><linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#00b89c"/><stop offset="1" stop-color="#77f0d7"/></linearGradient></defs><circle cx="265" cy="160" r="140" fill="#6be8d1" opacity=".06"/><rect x="48" y="36" width="355" height="225" rx="19" fill="#031f2b" opacity=".35" transform="rotate(-4 48 36)"/><g transform="rotate(-4 48 36)"><rect x="55" y="30" width="350" height="222" rx="17" fill="url(#panelGrad)" stroke="#5bdcc8" stroke-opacity=".55"/><rect x="72" y="49" width="316" height="28" rx="7" fill="#0c5964"/><circle cx="88" cy="63" r="4" fill="#64f1d7"/><rect x="101" y="59" width="77" height="7" rx="3" fill="#b6f6e9" opacity=".8"/><rect x="344" y="59" width="29" height="7" rx="3" fill="#48d7bf"/><g stroke="#b5e7e8" stroke-opacity=".13"><path d="M83 111H373M83 149H373M83 187H373M83 225H373"/></g><g fill="url(#barGrad)"><rect x="97" y="184" width="24" height="41" rx="4"/><rect x="136" y="165" width="24" height="60" rx="4"/><rect x="175" y="151" width="24" height="74" rx="4"/><rect x="214" y="130" width="24" height="95" rx="4"/><rect x="253" y="108" width="24" height="117" rx="4"/></g><path d="M94 171 145 145 185 126 224 102 270 83 321 91 361 70" fill="none" stroke="#50f0ce" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="m345 68 19 2-3 18" fill="none" stroke="#50f0ce" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(340 180)"><path d="M20 80V35" stroke="#56d9b7" stroke-width="5" stroke-linecap="round"/><path d="M20 49C-8 47-17 26-13 12 9 14 23 28 20 49Z" fill="#26c99e"/><path d="M20 36C18 10 36-3 54 0 53 21 40 35 20 36Z" fill="#6ce8c7"/><path d="M20 63C37 42 57 47 65 59 50 76 34 77 20 63Z" fill="#149b87"/><path d="M-3 81H44L38 103H4Z" fill="#d4e9e7"/><path d="M3 82H38" stroke="#7cc7bc" stroke-width="3"/></g><g transform="translate(35 245)"><rect width="132" height="48" rx="13" fill="#e7fff8"/><circle cx="24" cy="24" r="12" fill="#00b89c"/><path d="m18 24 4 4 8-9" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><text x="45" y="21" fill="#0b4654" font-size="10" font-family="Arial,sans-serif">Grow steadily</text><text x="45" y="34" fill="#527584" font-size="8" font-family="Arial,sans-serif">One month at a time</text></g></svg>
     </div>
-    <div class="form-group">
-      <label>Expected Annual Return (%)</label>
-      <input type="number" id="rate" value="12">
-      <input type="range" id="rate-slider" min="1" max="30" step="0.1" value="12">
+  </section>
+  <main class="page-wrap" id="sip-calculator">
+    <div class="section-kicker">Your investment planner</div>
+    <h2 class="section-heading">SIP Calculator</h2>
+    <p class="section-intro">Enter a monthly amount, an assumed annual return and your investment period. The estimates update when you calculate.</p>
+    <div class="calculator-layout">
+      <section class="panel" aria-labelledby="inputs-heading">
+        <h3 class="panel-title" id="inputs-heading"><span class="panel-icon" aria-hidden="true">▤</span> Set your investment goals</h3>
+        <div class="form-group"><div class="label-row"><label for="investment">Monthly Investment (₹)</label><span class="field-value" id="investment-value">₹5,000</span></div><input class="number-input" type="number" id="investment" min="1000" max="100000" step="500" value="5000" inputmode="numeric"/><input type="range" id="investment-slider" min="1000" max="100000" step="500" value="5000" aria-label="Monthly investment slider"/><div class="range-labels"><span>₹1,000</span><span>₹1,00,000</span></div></div>
+        <div class="form-group"><div class="label-row"><label for="rate">Expected Annual Return (%)</label><span class="field-value" id="rate-value">12%</span></div><input class="number-input" type="number" id="rate" min="1" max="30" step="0.1" value="12"/><input type="range" id="rate-slider" min="1" max="30" step="0.1" value="12" aria-label="Expected annual return slider"/><div class="range-labels"><span>1%</span><span>30%</span></div></div>
+        <div class="form-group"><div class="label-row"><label for="years">Investment Period (years)</label><span class="field-value" id="years-value">10 years</span></div><input class="number-input" type="number" id="years" min="1" max="40" step="1" value="10"/><input type="range" id="years-slider" min="1" max="40" step="1" value="10" aria-label="Investment period slider"/><div class="range-labels"><span>1 year</span><span>40 years</span></div></div>
+        <button id="calculate" class="primary-btn" type="button">Calculate SIP <span aria-hidden="true">→</span></button>
+        <p class="form-note">Try changing the sliders to compare different investment scenarios.</p>
+      </section>
+      <section class="panel results-panel" aria-labelledby="results-heading" aria-live="polite">
+        <h3 class="panel-title" id="results-heading"><span class="panel-icon" aria-hidden="true">↗</span> Your estimated outcome</h3>
+        <div class="result-total"><div class="caption">Estimated total value</div><strong>₹<span id="total">0</span></strong><small>Illustrative projection, not a guaranteed return</small></div>
+        <div class="result-stats"><div class="stat-card"><span>Total Invested</span><strong>₹<span id="invested">0</span></strong></div><div class="stat-card"><span>Estimated Returns</span><strong>₹<span id="returns">0</span></strong></div></div>
+        <div class="chart-wrap"><h3>Investment vs. estimated returns</h3><canvas id="breakupChart" role="img" aria-label="Chart comparing total invested and estimated returns"></canvas></div>
+        <p class="disclaimer">Estimates are based on the assumptions you enter. Actual market-linked investment returns vary and may be lower or negative. This tool is for illustration only.</p>
+      </section>
     </div>
-    <div class="form-group">
-      <label>Investment Period (years)</label>
-      <input type="number" id="years" value="10">
-      <input type="range" id="years-slider" min="1" max="40" step="1" value="10">
-    </div>
-    <button id="calculate">Calculate SIP</button>
-    <div class="results">
-      <p><strong>Total Invested:</strong> ₹<span id="invested">0</span></p>
-      <p><strong>Estimated Returns:</strong> ₹<span id="returns">0</span></p>
-      <p><strong>Total Value:</strong> ₹<span id="total">0</span></p>
-    </div>
-    <canvas id="breakupChart"></canvas>
+    <section id="how-it-works" aria-labelledby="benefits-heading" style="margin-top:42px"><div class="section-kicker">Plan with confidence</div><h2 class="section-heading" id="benefits-heading">A clearer view of your investing journey</h2><p class="section-intro">Use these estimates as a starting point for understanding the effect of time and regular contributions.</p><div class="benefits"><article class="benefit"><div class="benefit-icon" aria-hidden="true">01</div><h3>Choose a monthly amount</h3><p>Start with a contribution that fits your budget and adjust it to explore alternatives.</p></article><article class="benefit"><div class="benefit-icon" aria-hidden="true">02</div><h3>Set your time horizon</h3><p>Compare different investment periods to see how time changes the projection.</p></article><article class="benefit"><div class="benefit-icon" aria-hidden="true">03</div><h3>Review the breakdown</h3><p>See your contributions and estimated growth separately to understand the projection.</p></article></div></section>
   </main>
-  <footer>
-    <p>&copy; 2025 BlueVault Finance. All rights reserved.</p>
-  </footer>
+  <footer class="site-footer"><div class="footer-inner"><a class="footer-brand" href="https://www.bluevault.live"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="27" width="9" height="17" rx="2" fill="#00b89c"/><rect x="17" y="17" width="9" height="27" rx="2" fill="#19c9a9"/><rect x="30" y="6" width="9" height="38" rx="2" fill="#69ead1"/></svg>financeBI</a><p>© 2026 financeBI. Smarter Money Decisions.</p><p>Illustrative calculations only. Investment values can fluctuate.</p></div></footer>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://finance-app-cicd-images.s3.us-east-1.amazonaws.com/Assets/pages/sip/script.js"></script>
+  <script>
+    // Keep the existing SIP script and element IDs compatible; this adds synced controls and responsive navigation.
+    (function(){
+      const pairs=[['investment','investment-slider','investment-value',v=>'₹'+Number(v).toLocaleString('en-IN')],['rate','rate-slider','rate-value',v=>Number(v).toLocaleString('en-IN')+'%'],['years','years-slider','years-value',v=>v+' years']];
+      pairs.forEach(([inputId,sliderId,displayId,format])=>{const input=document.getElementById(inputId),slider=document.getElementById(sliderId),display=document.getElementById(displayId);if(!input||!slider)return;const sync=(source,target)=>{let value=Number(source.value);if(!Number.isFinite(value))return;value=Math.min(Number(source.max),Math.max(Number(source.min),value));if(source.value!==String(value))source.value=value;target.value=value;display.textContent=format(value)};input.addEventListener('input',()=>sync(input,slider));slider.addEventListener('input',()=>sync(slider,input));sync(input,slider)});
+      const menuButton=document.querySelector('.nav-toggle'),menu=document.getElementById('primary-navigation');if(menuButton&&menu){menuButton.addEventListener('click',()=>{const open=menu.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu')});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}))}
+    })();
+  </script>
 </body>
 </html>
