@@ -1,0 +1,141 @@
+---
+- name: Prepare Kubernetes Node (Disable Swap, Load Modules, Configure Sysctl, Install CRI-O and K8s)
+  hosts: k8s_nodes # This should be a group defined in your Ansible inventory (e.g., inventory.ini)
+  become: true     # Run all tasks with sudo privileges
+
+  # Declare the required collections
+  collections:
+    - community.general # This collection contains the 'modprobe' module
+
+  vars:
+    # Define Kubernetes and CRI-O versions
+    kubernetes_version: "v1.32"
+    crio_version: "v1.32"
+
+  tasks:
+    - name: Disable swap permanently
+      ansible.builtin.command: swapoff -a
+      # This command is not idempotent by itself, but the lineinfile task below makes the overall process idempotent for fstab.
+      # We run it first to ensure swap is off immediately.
+      changed_when: true # Always report as changed if swap was on
+
+    - name: Remove swap entries from /etc/fstab
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        regexp: '^[^#].*swap' # Matches any line not starting with # that contains 'swap'
+        state: absent
+      # This task is idempotent: if swap lines are already removed, it does nothing.
+
+    - name: Create /etc/modules-load.d/crio.conf for kernel modules
+      ansible.builtin.copy:
+        content: |
+          overlay
+          br_netfilter
+        dest: /etc/modules-load.d/crio.conf
+        mode: '0644'
+      # This task is idempotent: if the file content is already correct, it does nothing.
+
+    - name: Load overlay kernel module
+      # Corrected module reference: 'modprobe' is in 'community.general' collection
+      community.general.modprobe:
+        name: overlay
+        state: present
+      # This module is idempotent: it only loads the module if it's not already loaded.
+
+    - name: Load br_netfilter kernel module
+      # Corrected module reference
+      community.general.modprobe:
+        name: br_netfilter
+        state: present
+      # This module is idempotent.
+
+    - name: Configure Kubernetes sysctl parameters
+      ansible.builtin.copy:
+        content: |
+          net.bridge.bridge-nf-call-ip6tables = 1
+          net.bridge.bridge-nf-call-iptables = 1
+          net.ipv4.ip_forward = 1
+        dest: /etc/sysctl.d/kubernetes.conf
+        mode: '0644'
+      # This task is idempotent.
+
+    - name: Apply sysctl parameters from all system configuration files
+      ansible.builtin.command: sysctl --system
+      # This command applies all sysctl settings. It's safe to run multiple times.
+      changed_when: true # Always report as changed because it's a system-wide command.
+
+    - name: Update apt package cache and install prerequisites
+      ansible.builtin.apt:
+        name:
+          - software-properties-common
+          - curl
+        state: present
+        update_cache: true # Ensures apt cache is refreshed before installing packages.
+
+    - name: Create apt keyrings directory if it doesn't exist
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Download and dearmor Kubernetes GPG key
+      ansible.builtin.get_url:
+        url: "https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version }}/deb/Release.key"
+        dest: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
+        mode: '0644'
+        force: true # Ensures the key is always up-to-date if it changes.
+      # This task is idempotent based on the file content and force: true.
+
+    - name: Add Kubernetes apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version }}/deb/ /"
+        state: present
+        filename: kubernetes
+      # This module is idempotent.
+
+    - name: Download and dearmor CRI-O GPG key
+      ansible.builtin.get_url:
+        url: "https://pkgs.k8s.io/addons:/cri-o:/stable:/{{ crio_version }}/deb/Release.key"
+        dest: "/etc/apt/keyrings/cri-o-apt-keyring.gpg"
+        mode: '0644'
+        force: true
+      # This task is idempotent.
+
+    - name: Add CRI-O apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/{{ crio_version }}/deb/ /"
+        state: present
+        filename: cri-o
+      # This module is idempotent.
+
+    - name: Update apt package cache after adding new repositories
+      ansible.builtin.apt:
+        update_cache: true
+      # This is important to ensure apt knows about the new packages from the added repos.
+
+    - name: Install CRI-O, kubelet, kubeadm, kubectl
+      ansible.builtin.apt:
+        name:
+          - cri-o
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: present
+      # This task is idempotent.
+
+    - name: Hold kubelet, kubeadm, kubectl to prevent automatic updates
+      ansible.builtin.dpkg_selections:
+        name: "{{ item }}"
+        selection: hold
+      loop:
+        - kubelet
+        - kubeadm
+        - kubectl
+      # This module is idempotent.
+
+    - name: Enable and start CRI-O service
+      ansible.builtin.systemd:
+        name: crio
+        enabled: true
+        state: started
+      # This module is idempotent.

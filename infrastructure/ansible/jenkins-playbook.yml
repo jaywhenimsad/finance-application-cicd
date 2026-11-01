@@ -1,0 +1,114 @@
+---
+- name: Configure and Install Jenkins
+  hosts: jenkins_servers
+  become: true
+
+  vars:
+    tmp_size: "2G"
+
+  tasks:
+    - name: Ensure /tmp is mounted as tmpfs with specified size
+      ansible.builtin.mount:
+        path: /tmp
+        src: tmpfs
+        fstype: tmpfs
+        opts: "defaults,noatime,size={{ tmp_size }}"
+        state: mounted
+
+    - name: Add /tmp tmpfs entry to /etc/fstab for persistence
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        line: "tmpfs /tmp tmpfs defaults,noatime,size={{ tmp_size }} 0 0"
+        state: present
+        regexp: '^tmpfs /tmp tmpfs'
+
+    - name: Update all installed packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_cache: true
+
+    - name: Install Java 21 Amazon Corretto
+      ansible.builtin.dnf:
+        name: java-21-amazon-corretto
+        state: present
+
+    - name: Install wget
+      ansible.builtin.dnf:
+        name: wget
+        state: present
+
+    - name: Add Jenkins repository
+      ansible.builtin.get_url:
+        url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+        mode: '0644'
+
+    - name: Import Jenkins GPG key
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+    - name: Install Jenkins
+      ansible.builtin.dnf:
+        name: jenkins
+        state: present
+        update_cache: true
+
+    - name: Enable and start Jenkins service
+      ansible.builtin.systemd:
+        name: jenkins
+        enabled: true
+        state: started
+
+    # ---------------------
+    # Additional Tasks
+    # ---------------------
+
+    - name: Install Docker
+      ansible.builtin.dnf:
+        name: docker
+        state: present
+
+    - name: Enable and start Docker service
+      ansible.builtin.systemd:
+        name: docker
+        enabled: true
+        state: started
+
+    - name: Install Git
+      ansible.builtin.dnf:
+        name: git
+        state: present
+
+    - name: Add Jenkins user to Docker group
+      ansible.builtin.user:
+        name: jenkins
+        groups: docker
+        append: true
+
+    - name: Download kubectl binary
+      ansible.builtin.shell: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      args:
+        chdir: /tmp
+        creates: /tmp/kubectl
+
+    - name: Make kubectl executable
+      ansible.builtin.file:
+        path: /tmp/kubectl
+        mode: '0755'
+
+    - name: Move kubectl to /usr/local/bin
+      ansible.builtin.command: mv /tmp/kubectl /usr/local/bin/kubectl
+      args:
+        creates: /usr/local/bin/kubectl
+
+    - name: Verify kubectl installation
+      ansible.builtin.command: kubectl version --client
+      register: kubectl_version
+      changed_when: false
+
+    - name: Show kubectl version
+      ansible.builtin.debug:
+        msg: "{{ kubectl_version.stdout }}"
